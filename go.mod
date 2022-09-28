@@ -1,4 +1,4 @@
-module logzer
+module github.com/12storeez/logzer
 
 go 1.19
 

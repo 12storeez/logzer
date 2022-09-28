@@ -2,8 +2,8 @@ package main
 
 import (
 	"errors"
+	"github.com/12storeez/logzer"
 	"go.uber.org/zap"
-	"logzer"
 )
 
 func main() {
