@@ -5,11 +5,7 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-type sugaredLogger struct {
-	*zap.SugaredLogger
-}
-
-func New(debug bool) *sugaredLogger {
+func New(debug bool) *zap.SugaredLogger {
 	loggingLevel := zap.InfoLevel
 	if debug {
 		loggingLevel = zap.DebugLevel
@@ -32,25 +28,5 @@ func New(debug bool) *sugaredLogger {
 			_ = logger.Sync()
 		}()
 	}
-	return &sugaredLogger{logger.Sugar()}
-}
-
-func (l *sugaredLogger) Error(message string, kvs ...interface{}) {
-	l.Errorw(message, kvs...)
-}
-
-func (l *sugaredLogger) Warn(message string, kvs ...interface{}) {
-	l.Warnw(message, kvs...)
-}
-
-func (l *sugaredLogger) Info(message string, kvs ...interface{}) {
-	l.Infow(message, kvs...)
-}
-
-func (l *sugaredLogger) Debug(message string, kvs ...interface{}) {
-	l.Debugw(message, kvs...)
-}
-
-func (l *sugaredLogger) Fatal(message string, kvs ...interface{}) {
-	l.Fatalw(message, kvs...)
+	return logger.Sugar()
 }
